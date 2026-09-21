@@ -1,0 +1,23 @@
+[
+  {"type":"constructor","inputs":[{"name":"tokenAddress","type":"address"}],"stateMutability":"nonpayable"},
+  {"type":"function","name":"MAX_WEEKS","inputs":[],"outputs":[{"name":"","type":"uint8"}],"stateMutability":"view"},
+  {"type":"function","name":"WEEK","inputs":[],"outputs":[{"name":"","type":"uint256"}],"stateMutability":"view"},
+  {"type":"function","name":"checkIn","inputs":[{"name":"pledgeId","type":"uint256"}],"outputs":[],"stateMutability":"nonpayable"},
+  {"type":"function","name":"createPledge","inputs":[{"name":"goal","type":"string"},{"name":"weeksCount","type":"uint8"},{"name":"beneficiary","type":"address"},{"name":"stake","type":"uint256"}],"outputs":[{"name":"pledgeId","type":"uint256"}],"stateMutability":"nonpayable"},
+  {"type":"function","name":"currentWeek","inputs":[{"name":"pledgeId","type":"uint256"}],"outputs":[{"name":"week","type":"uint8"},{"name":"active","type":"bool"}],"stateMutability":"view"},
+  {"type":"function","name":"endTime","inputs":[{"name":"pledgeId","type":"uint256"}],"outputs":[{"name":"","type":"uint256"}],"stateMutability":"view"},
+  {"type":"function","name":"getPledge","inputs":[{"name":"pledgeId","type":"uint256"}],"outputs":[{"name":"","type":"tuple","components":[{"name":"pledger","type":"address"},{"name":"beneficiary","type":"address"},{"name":"startTime","type":"uint64"},{"name":"weeksCount","type":"uint8"},{"name":"checkedCount","type":"uint8"},{"name":"settled","type":"bool"},{"name":"stake","type":"uint256"},{"name":"checkedBitmap","type":"uint256"},{"name":"goal","type":"string"}]}],"stateMutability":"view"},
+  {"type":"function","name":"nextPledgeId","inputs":[],"outputs":[{"name":"","type":"uint256"}],"stateMutability":"view"},
+  {"type":"function","name":"token","inputs":[],"outputs":[{"name":"","type":"address"}],"stateMutability":"view"},
+  {"type":"function","name":"withdraw","inputs":[{"name":"pledgeId","type":"uint256"}],"outputs":[],"stateMutability":"nonpayable"},
+  {"type":"event","name":"CheckedIn","inputs":[{"name":"pledgeId","type":"uint256","indexed":true},{"name":"week","type":"uint8","indexed":true},{"name":"timestamp","type":"uint64","indexed":false}],"anonymous":false},
+  {"type":"event","name":"PledgeCreated","inputs":[{"name":"pledgeId","type":"uint256","indexed":true},{"name":"pledger","type":"address","indexed":true},{"name":"beneficiary","type":"address","indexed":true},{"name":"stake","type":"uint256","indexed":false},{"name":"weeksCount","type":"uint8","indexed":false},{"name":"startTime","type":"uint64","indexed":false},{"name":"goal","type":"string","indexed":false}],"anonymous":false},
+  {"type":"event","name":"PledgeSettled","inputs":[{"name":"pledgeId","type":"uint256","indexed":true},{"name":"returnedToPledger","type":"uint256","indexed":false},{"name":"forfeitedToBeneficiary","type":"uint256","indexed":false}],"anonymous":false},
+  {"type":"error","name":"AlreadyCheckedIn","inputs":[]}, {"type":"error","name":"AlreadySettled","inputs":[]},
+  {"type":"error","name":"EmptyGoal","inputs":[]}, {"type":"error","name":"InvalidBeneficiary","inputs":[]},
+  {"type":"error","name":"InvalidStake","inputs":[]}, {"type":"error","name":"InvalidToken","inputs":[]},
+  {"type":"error","name":"InvalidWeeks","inputs":[]}, {"type":"error","name":"PledgeActive","inputs":[]},
+  {"type":"error","name":"PledgeEnded","inputs":[]}, {"type":"error","name":"Reentrancy","inputs":[]},
+  {"type":"error","name":"TransferFailed","inputs":[]}, {"type":"error","name":"Unauthorized","inputs":[]},
+  {"type":"error","name":"UnknownPledge","inputs":[]}
+]

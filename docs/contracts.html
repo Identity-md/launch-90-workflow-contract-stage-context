@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Build Pledge contracts</title>
+<style>body{background:#fafaf7;color:#20231f;font:16px/1.55 system-ui;max-width:850px;margin:3rem auto;padding:0 1.25rem}code{background:#eceee8;padding:.15rem .35rem}h1,h2{line-height:1.2}</style></head>
+<body>
+<h1>Build Pledge contract notes</h1>
+<p><code>Pledge</code> is a zero-argument, fixed-supply ERC-20. Its constructor mints exactly 1,000,000,000 PLDG (10<sup>27</sup> minor units) to its deployer. There is no owner, mint, pause, fee, upgrade, or recovery power.</p>
+<p><code>HabitPledge</code> has one constructor argument: the deployed PLDG address. For the Sepolia ProjectFactory launch this must be <code>$token</code>. The contract has no owner or administrator.</p>
+<h2>Rules and assumptions</h2>
+<ul>
+<li>A pledge has 1–52 weeks, a non-empty goal, a distinct nonzero beneficiary, and a positive stake evenly divisible by its week count.</li>
+<li>Week zero begins at the creation timestamp. Each seven-day window is half-open: its start is included and the next window's start is excluded. One check-in is allowed per window and only from the pledger.</li>
+<li>After the exact end timestamp, anyone can trigger settlement. Each checked week returns one slice to the pledger; each missed week sends one slice to the beneficiary. A fully completed pledge therefore returns the entire stake.</li>
+<li>Transfers occur only during creation and final settlement. State is updated before external token calls and all mutating entry points share a reentrancy guard. A reverting or false-returning token transfer reverts the whole operation.</li>
+</ul>
+<h2>Deployment and operations</h2>
+<p>Target chain is Sepolia (11155111). Deploy <code>Pledge</code> first, then <code>HabitPledge</code> with that address. This contribution does not create <code>launch.json</code>, broadcast transactions, or control keys. The manifest contributor must use the accepted source, order these dependencies, name the application <code>HabitPledge</code>, and pass <code>$token</code>.</p>
+<p>There are no operator duties after deployment. Users must approve PLDG before creation; any account may settle an expired pledge. Clients and indexers should monitor all three state-change events and display timestamps using chain time.</p>
+<h2>Release responsibilities and risks</h2>
+<p>The publishing, attestation, admission, and deployment services remain responsible for source linkage and launch policy. An independent contributor must adversarially review the accepted contracts and later manifest before release. The seven-day schedule depends on block timestamps, and funds remain locked until the final window ends. Tests are evidence of intended behavior, not a security audit.</p>
+<p>Canonical ABI exports are <code>docs/abi/Pledge.json</code> and <code>docs/abi/HabitPledge.json</code>.</p>
+</body></html>
