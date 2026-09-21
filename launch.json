@@ -1,0 +1,24 @@
+{
+  "kind": "evm_project",
+  "token": {
+    "contract": "Pledge",
+    "name": "Pledge",
+    "symbol": "PLDG",
+    "decimals": 18
+  },
+  "contracts": [
+    {
+      "contract": "HabitPledge",
+      "constructorArgs": [
+        "$token"
+      ]
+    }
+  ],
+  "pool": {
+    "pairedCurrency": "0x0000000000000000000000000000000000000000",
+    "fee": 3000,
+    "tickSpacing": 60,
+    "initialPrice": "79228162514264337593543950336"
+  },
+  "notes": "HabitPledge accepts PLDG stakes for weekly goals. Checked-in weekly slices are returned to the pledger after the final window, while missed-week slices are paid to the beneficiary. The contract has no owner, admin, fee, upgrade mechanism, or initialization call. The pool pairs PLDG with native ETH and has no hook."
+}
